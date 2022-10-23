@@ -1,0 +1,2 @@
+# copilot cypress
+This repository contains the Cypress tests with the support of Github Copilot tool. The tests are written in JavaScript (Cypress) and are executed against cypress sample application (Cypress Real World App).
