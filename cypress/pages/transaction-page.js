@@ -1,4 +1,4 @@
-class TransactionPaage {
+class TransactionPage {
     selectors = {
         // define selector for new transaction [data-test=nav-top-new-transaction]
         receiverAvatar : () => cy.get('[data-test="user-list-item-tsHF6_D5oQ"]'),
@@ -24,4 +24,4 @@ class TransactionPaage {
     }
 }
 
-module.exports = new TransactionPaage();
+module.exports = new TransactionPage();
