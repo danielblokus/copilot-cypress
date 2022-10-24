@@ -22,26 +22,25 @@ describe('Transaction tests', () => {
         cy.get('#transaction-create-amount-input-helper-text').should('be.visible')
     })
 
-        // test
-        it.skip('example test', () => {
-            homePage.clickNewTransaction()
-    
-            transactionPage.clickReceiverAvatar()
-            transactionPage.fillInAmountField()
-            transactionPage.typeinDescriptionField()
-            cy.intercept('POST', 'http://localhost:3001/transactions').as('postTransaction');
-            transactionPage.clickSubmitButton()
-            cy.wait('@postTransaction').then((interception) => {
-                expect(interception.response.statusCode).to.equal(200);
-                expect(interception.response.body.transaction.receiverId).to.equal('tsHF6_D5oQ');
-            }) 
-        })
+    it('example test', () => {
+        // homePage.clickNewTransaction()
+        cy.get('[data-test=nav-top-new-transaction]').click()
+        transactionPage.clickReceiverAvatar()
+        transactionPage.fillInAmountField()
+        transactionPage.typeinDescriptionField()
+        cy.intercept('POST', 'http://localhost:3001/transactions').as('postTransaction');
+        transactionPage.clickSubmitButton()
+        cy.wait('@postTransaction').then((interception) => {
+            expect(interception.response.statusCode).to.equal(200);
+            expect(interception.response.body.transaction.receiverId).to.equal('tsHF6_D5oQ');
+        }) 
+    })
 
     // optional
-    afterEach(() => {
-        // cy.get('[data-test="sidenav-signout"]').click()
-        // cy.url().should('eq', 'http://localhost:3000/')
-    })
+    // afterEach(() => {
+    //     cy.get('[data-test="sidenav-signout"]').click()
+    //     cy.url().should('eq', urlSignin)
+    // })
 
     const login = (username, password) => {
         cy.visit(urlSignin)

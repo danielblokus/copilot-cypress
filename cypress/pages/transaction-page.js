@@ -4,7 +4,7 @@ class TransactionPaage {
         receiverAvatar : () => cy.get('[data-test="user-list-item-tsHF6_D5oQ"]'),
         amoutField : () => cy.get('#amount'),
         descriptionField : () => cy.get('#transaction-create-description-input'),
-        submitButton : () => cy.get('[data-test="transaction-create-form"]')
+        submitButton : () => cy.get('form')
     }
 
     clickReceiverAvatar() {
@@ -20,7 +20,7 @@ class TransactionPaage {
     }
 
     clickSubmitButton() {
-        this.selectors.submitButton().click()
+        this.selectors.submitButton().submit()
     }
 }
 
