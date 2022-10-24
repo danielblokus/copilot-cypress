@@ -1,3 +1,5 @@
+import transactionPage from '../pages/transaction-page';
+
 // add describe section with name Transaction tests
 describe('Transaction tests', () => {
     const urlSignin = 'http://localhost:3000/signin'
@@ -10,10 +12,19 @@ describe('Transaction tests', () => {
         login(username, password)
     })
 
-    // test
-    it.skip('example test', () => {
-        homePage.clickNewTransaction()
+    // test should display error message when amount is not provided
+    it('should display error message when amount is not provided', () => {
+        cy.get('[data-test=nav-top-new-transaction]').click()
 
+        transactionPage.clickReceiverAvatar()
+        transactionPage.typeinDescriptionField()
+        transactionPage.clickSubmitButton()
+        cy.get('#transaction-create-amount-input-helper-text').should('be.visible')
+    })
+
+    it('example test', () => {
+        // homePage.clickNewTransaction()
+        cy.get('[data-test=nav-top-new-transaction]').click()
         transactionPage.clickReceiverAvatar()
         transactionPage.fillInAmountField()
         transactionPage.typeinDescriptionField()
@@ -25,21 +36,11 @@ describe('Transaction tests', () => {
         }) 
     })
 
-    // test should display error message when amount is not provided
-    it('should display error message when amount is not provided', () => {
-        cy.get('[data-test=nav-top-new-transaction]').click()
-
-        transactionPage.clickReceiverAvatar()
-        transactionPage.typeinDescriptionField()
-        transactionPage.clickSubmitButton()
-        cy.get('[data-test="transaction-create-amount-error"]').should('be.visible')
-    })
-
     // optional
-    afterEach(() => {
-        // cy.get('[data-test="sidenav-signout"]').click()
-        // cy.url().should('eq', 'http://localhost:3000/')
-    })
+    // afterEach(() => {
+    //     cy.get('[data-test="sidenav-signout"]').click()
+    //     cy.url().should('eq', urlSignin)
+    // })
 
     const login = (username, password) => {
         cy.visit(urlSignin)
